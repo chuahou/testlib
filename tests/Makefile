@@ -3,9 +3,11 @@ CCFLAGS=-g -Wall -O3
 CCC=g++
 LDFLAGS=-L../lib -ltestlib -g
 
-SRCDIR=src
-OBJDIR=obj
-OUTDIR=bin
+SRCDIR:=src
+OBJDIR:=obj
+OUTDIR:=bin
+
+DIRS:=$(SRCDIR) $(OBJDIR) $(OUTDIR)
 
 SRC:=$(wildcard src/*.cpp)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
@@ -16,6 +18,11 @@ $(OUT): $(OBJ)
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
 	$(CCC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+setup: $(DIRS)
+
+$(DIRS):
+	mkdir -p $@
 
 run:
 	$(OUT)
