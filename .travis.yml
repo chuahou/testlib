@@ -1,0 +1,18 @@
+language: cpp
+compiler: # let's test on both
+  - clang++
+  - g++
+
+matrix:
+  include:
+    - os: linux
+    - os: osx
+
+script:
+  - mkdir obj
+  - mkdir lib
+  - mkdir tests/obj
+  - mkdir tests/bin
+  - make
+  - make test
+  - make runtest
