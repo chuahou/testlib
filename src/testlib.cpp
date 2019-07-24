@@ -4,7 +4,6 @@ namespace testlib
 {
     Counter::Counter()
     {
-        n = 0;
     }
 
     Counter::Counter(int a)
@@ -14,7 +13,7 @@ namespace testlib
 
     void Counter::Increment()
     {
-        n++;
+        n--;
     }
 
     void Counter::Decrement()
