@@ -34,4 +34,6 @@ runtest:
 	make -C tests run
 
 clean:
-	rm $(OUTDIR)/* $(OBJDIR)/*
+	# Or true to ensure second line is still run if first fails
+	rm $(OUTDIR)/* $(OBJDIR)/* || true
+	make -C tests clean
