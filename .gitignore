@@ -1,0 +1,4 @@
+# ignore all built binaries, libraries and object files
+*.o
+*.a
+*/bin/*
