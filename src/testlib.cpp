@@ -4,7 +4,7 @@ namespace testlib
 {
     Counter::Counter()
     {
-        Counter(0);
+        n = 0;
     }
 
     Counter::Counter(int a)

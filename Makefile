@@ -1,7 +1,6 @@
 INCLUDES=-Iinclude
 CCFLAGS=-g -Wall -O3
 CCC=g++
-LDLIBS=
 LDFLAGS=-g
 AR=ar
 ARFLAGS=rsv
@@ -12,13 +11,19 @@ OUTDIR=lib
 
 SRC:=$(wildcard $(SRCDIR)/*.cpp)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
-OUT:=lib/testlib.a
+OUT:=lib/libtestlib.a
 
 $(OUT): $(OBJ)
 	$(AR) $(ARFLAGS) $@ $<
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CCC) $(CFLAGS) $(INCLUDES) -c $< -o $@ $(LDLIBS)
+	$(CCC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+test:
+	make -C tests
+
+runtest:
+	make -C tests run
 
 clean:
-	rm $(OUT) $(OBJ)
+	rm $(OUTDIR)/* $(OBJDIR)/*
