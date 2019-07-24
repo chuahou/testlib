@@ -2,10 +2,7 @@ extraction:
   cpp:
     configure:
       command:
-        - mkdir obj
-        - mkdir lib
-        - mkdir tests/obj
-        - mkdir tests/bin
+        - make setup
     index:
       build_command:
         - make

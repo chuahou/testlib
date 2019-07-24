@@ -9,10 +9,7 @@ matrix:
     - os: osx
 
 script:
-  - mkdir obj
-  - mkdir lib
-  - mkdir tests/obj
-  - mkdir tests/bin
+  - make setup
   - make
   - make test
   - make runtest
