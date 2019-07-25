@@ -14,7 +14,7 @@ OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=$(OUTDIR)/test.out
 
 $(OUT): $(OBJ)
-	$(CCC) $< $(LDFLAGS) -o $@
+	$(CCC) $^ $(LDFLAGS) -o $@
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
 	$(CCC) $(CFLAGS) $(INCLUDES) -c $< -o $@

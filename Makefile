@@ -16,7 +16,7 @@ OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=lib/libtestlib.a
 
 $(OUT): $(OBJ)
-	$(AR) $(ARFLAGS) $@ $<
+	$(AR) $(ARFLAGS) $@ $^
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
 	$(CCC) $(CFLAGS) $(INCLUDES) -c $< -o $@
