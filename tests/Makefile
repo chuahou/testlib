@@ -17,7 +17,7 @@ $(OUT): $(OBJ)
 	$(CCC) $^ $(LDFLAGS) -o $@
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CCC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CCC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
 
 setup: $(DIRS)
 
