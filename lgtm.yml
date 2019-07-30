@@ -1,3 +1,6 @@
+path_classifiers:
+  test:
+    - exclude: / # please don't exclude my whole repo...
 extraction:
   cpp:
     configure:
