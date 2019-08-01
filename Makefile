@@ -19,7 +19,7 @@ $(OUT): $(OBJ)
 	$(AR) $(ARFLAGS) $@ $^
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CCC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CCC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
 
 setup: $(DIRS)
 	make -C tests setup
