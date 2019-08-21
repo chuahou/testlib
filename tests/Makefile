@@ -1,11 +1,11 @@
-INCLUDES=-I../include
-CCFLAGS=-g -Wall -O3
-CCC=g++
 LDFLAGS=-L../lib -ltestlib -g
 
 SRCDIR:=src
+HEADERDIR:=../include
 OBJDIR:=obj
 OUTDIR:=bin
+
+INCLUDES=$(HEADERDIR:%=-I%)
 
 DIRS:=$(SRCDIR) $(OBJDIR) $(OUTDIR)
 
@@ -13,11 +13,12 @@ SRC:=$(wildcard src/*.cpp)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=$(OUTDIR)/test.out
 
-$(OUT): $(OBJ)
-	$(CCC) $^ $(LDFLAGS) -o $@
+.PHONY: build setup run clean
 
-$(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CCC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
+build: setup $(OUT)
+
+$(OUT): $(OBJ)
+	$(CXX) $^ $(LDFLAGS) -o $@
 
 setup: $(DIRS)
 
@@ -28,4 +29,7 @@ run:
 	$(OUT)
 
 clean:
-	rm $(OUT) $(OBJ)
+	rm $(OUT) $(OBJ) || true
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@

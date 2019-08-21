@@ -9,7 +9,4 @@ matrix:
     - os: osx
 
 script:
-  - make setup
-  - make
-  - make test
   - make runtest

@@ -1,25 +1,32 @@
-INCLUDES=-Iinclude
-CCFLAGS=-g -Wall -O3
-CCC=g++
+CXX?=g++
+CXXFLAGS?=-g
+
+export CXXFLAGS:=$(CXXFLAGS) -Wall -O3
+export CXX
 LDFLAGS=-g
 AR=ar
 ARFLAGS=rsv
 
 SRCDIR:=src
+HEADERDIR:=include
 OBJDIR:=obj
 OUTDIR:=lib
+
+INCLUDES=$(HEADERDIR:%=-I%)
 
 DIRS:=$(SRCDIR) $(OBJDIR) $(OUTDIR)
 
 SRC:=$(wildcard $(SRCDIR)/*.cpp)
+HEADERS:=$(wildcard)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=lib/libtestlib.a
 
-$(OUT): $(OBJ)
-	$(AR) $(ARFLAGS) $@ $^
+.PHONY: build setup test runtest clean
 
-$(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CCC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
+build: setup $(OUT)
+
+$(OUT): $(OBJ)
+	$(AR) $(ARFLAGS) $(OUT) $^
 
 setup: $(DIRS)
 	make -C tests setup
@@ -27,13 +34,16 @@ setup: $(DIRS)
 $(DIRS):
 	mkdir -p $@
 
-test:
+test: build
 	make -C tests
 
-runtest:
+runtest: test
 	make -C tests run
 
 clean:
 	# Or true to ensure second line is still run if first fails
 	rm $(OUTDIR)/* $(OBJDIR)/* || true
 	make -C tests clean
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
