@@ -1,9 +1,11 @@
-INCLUDES=-I../include
 LDFLAGS=-L../lib -ltestlib -g
 
 SRCDIR:=src
+HEADERDIR:=../include
 OBJDIR:=obj
 OUTDIR:=bin
+
+INCLUDES=$(HEADERDIR:%=-I%)
 
 DIRS:=$(SRCDIR) $(OBJDIR) $(OUTDIR)
 

@@ -1,17 +1,20 @@
 export CXXFLAGS=-g -Wall -O3
 export CXX=g++
-INCLUDES=-Iinclude
 LDFLAGS=-g
 AR=ar
 ARFLAGS=rsv
 
 SRCDIR:=src
+HEADERDIR:=include
 OBJDIR:=obj
 OUTDIR:=lib
+
+INCLUDES=$(HEADERDIR:%=-I%)
 
 DIRS:=$(SRCDIR) $(OBJDIR) $(OUTDIR)
 
 SRC:=$(wildcard $(SRCDIR)/*.cpp)
+HEADERS:=$(wildcard)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=lib/libtestlib.a
 
