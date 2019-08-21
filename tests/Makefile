@@ -13,6 +13,8 @@ SRC:=$(wildcard src/*.cpp)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=$(OUTDIR)/test.out
 
+.PHONY: build setup run clean
+
 build: setup $(OUT)
 
 $(OUT): $(OBJ)

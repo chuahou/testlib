@@ -18,6 +18,8 @@ HEADERS:=$(wildcard)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=lib/libtestlib.a
 
+.PHONY: build setup test runtest clean
+
 build: setup $(OUT)
 
 $(OUT): $(OBJ)
