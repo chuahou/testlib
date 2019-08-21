@@ -18,9 +18,6 @@ build: setup $(OUT)
 $(OUT): $(OBJ)
 	$(CXX) $^ $(LDFLAGS) -o $@
 
-$(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
-
 setup: $(DIRS)
 
 $(DIRS):
@@ -31,3 +28,6 @@ run:
 
 clean:
 	rm $(OUT) $(OBJ) || true
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
