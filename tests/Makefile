@@ -11,6 +11,8 @@ SRC:=$(wildcard src/*.cpp)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=$(OUTDIR)/test.out
 
+build: setup $(OUT)
+
 $(OUT): $(OBJ)
 	$(CXX) $^ $(LDFLAGS) -o $@
 

@@ -15,8 +15,9 @@ SRC:=$(wildcard $(SRCDIR)/*.cpp)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=lib/libtestlib.a
 
-$(OUT): setup build
-build: $(OBJ)
+build: setup $(OUT)
+
+$(OUT): $(OBJ)
 	$(AR) $(ARFLAGS) $(OUT) $^
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
