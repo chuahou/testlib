@@ -1,5 +1,8 @@
-export CXXFLAGS=-g -Wall -O3
-export CXX=g++
+CXX?=g++
+CXXFLAGS?=-g
+
+export CXXFLAGS:=$(CXXFLAGS) -Wall -O3
+export CXX
 LDFLAGS=-g
 AR=ar
 ARFLAGS=rsv
