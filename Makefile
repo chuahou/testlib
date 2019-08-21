@@ -1,6 +1,6 @@
+export CXXFLAGS=-g -Wall -O3
+export CXX=g++
 INCLUDES=-Iinclude
-CCFLAGS=-g -Wall -O3
-CCC=g++
 LDFLAGS=-g
 AR=ar
 ARFLAGS=rsv
@@ -15,11 +15,12 @@ SRC:=$(wildcard $(SRCDIR)/*.cpp)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 OUT:=lib/libtestlib.a
 
-$(OUT): $(OBJ)
-	$(AR) $(ARFLAGS) $@ $^
+$(OUT): setup build
+build: $(OBJ)
+	$(AR) $(ARFLAGS) $(OUT) $^
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CCC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 setup: $(DIRS)
 	make -C tests setup
