@@ -19,7 +19,7 @@ DIRS:=$(SRCDIR) $(OBJDIR) $(OUTDIR)
 SRC:=$(wildcard $(SRCDIR)/*.cpp)
 HEADERS:=$(wildcard)
 OBJ:=$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
-OUT:=lib/libtestlib.a
+OUT:=$(OUTDIR)/libtestlib.a
 
 .PHONY: build setup test runtest clean
 
