@@ -26,7 +26,7 @@ OUT:=$(OUTDIR)/libtestlib.a
 build: setup $(OUT)
 
 $(OUT): $(OBJ)
-	$(AR) $(ARFLAGS) $(OUT) $^
+	$(AR) $(ARFLAGS) $@ $^
 
 setup: $(DIRS)
 	make -C tests setup
