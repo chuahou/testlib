@@ -2,3 +2,7 @@
 *.o
 *.a
 */bin/*
+
+# ignore CMake stuff
+build/
+/build/

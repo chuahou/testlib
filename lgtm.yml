@@ -3,11 +3,9 @@ path_classifiers:
     - exclude: / # please don't exclude my whole repo...
 extraction:
   cpp:
-    configure:
-      command:
-        - make setup
     index:
       build_command:
+        - mkdir build
+        - cd build
+        - cmake ..
         - make
-        - make test
-        - make runtest

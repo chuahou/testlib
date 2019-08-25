@@ -9,4 +9,7 @@ matrix:
     - os: osx
 
 script:
-  - make runtest
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make runtests
