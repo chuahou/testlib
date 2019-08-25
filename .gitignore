@@ -3,6 +3,11 @@
 *.a
 */bin/*
 
-# ignore CMake stuff
+# ignore CMake builds
 build/
 /build/
+
+# ignore VS files
+.vs/
+*.sln
+*.vcxproj*
